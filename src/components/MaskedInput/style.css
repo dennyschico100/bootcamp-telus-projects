@@ -1,0 +1,20 @@
+body {
+  background: linear-gradient(to top, #ff9671, #9198e5);
+}
+.container .row {
+  background: white;
+}
+h2 {
+  color: #7b2cbf;
+}
+
+.btn {
+  background: #7b2cbf;
+}
+.btn-enviar {
+  color: #fff;
+}
+.btn-enviar:hover {
+  color: #fff;
+  transform: scale(0.9);
+}
