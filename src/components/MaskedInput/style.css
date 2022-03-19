@@ -1,6 +1,8 @@
 body {
-  background: linear-gradient(to top, #ff9671, #9198e5);
+  /* background: linear-gradient(to top, #ff9671, #9198e5);
+*/
 }
+
 .container .row {
   background: white;
 }

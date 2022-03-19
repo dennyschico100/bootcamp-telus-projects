@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import {
+  faHome,
+  faPlay,
+  faStop,
+  faPause,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles,
@@ -26,6 +34,7 @@ const Pomodoro = () => {
   useEffect(() => {
     console.log('useEffect run');
     window.localStorage.setItem('totalSeconds', minutes * 60);
+    document.body.style.background = '#003049';
   }, []);
   useEffect(() => {
     if (start) {
@@ -76,72 +85,77 @@ const Pomodoro = () => {
     <>
       <div className="container">
         <div
-          className="cycle-container row"
-          style={{ border: '3px solid blue' }}
+          className="cycle-container row mt-2"
+          style={{ border: '0px solid blue' }}
         >
-          <h1>
-            Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-          </h1>
+          <h1 className="text-center text-white">Pomodoro App</h1>
+
+          {/*style={{ width: 200, height: 200, border: '3px solid red' }} */}
           <div
-            style={{ width: 200, height: 200, border: '3px solid red' }}
-            className="col-md-4 offset-md-4"
+            style={{ border: '0px solid red' }}
+            className="col-md-4 offset-md-4 mt-2"
           >
             {/*text={`${minutes}:${seconds < 10 ? `0${seconds}` : `${seconds}`}`}
-             */}
+             
+             turquoise*/}
             <CircularProgressbar
               value={percentage}
               text={`${minutes}:${seconds < 10 ? `0${seconds}` : `${seconds}`}`}
               styles={buildStyles({
-                textColor: 'red',
-                pathColor: 'turquoise',
-                trailColor: '#eee',
+                textColor: '#fff',
+                pathColor: '#DC2E42',
+                trailColor: '#ccf2ee',
               })}
             />
           </div>
-        </div>
-        <button
-          onClick={() => {
-            setStart(true);
+          <div className="col-md-4 offset-md-4 d-flex  justify-content-between btns-container">
+            <button
+              disabled={start}
+              onClick={() => {
+                setStart(true);
 
-            if (isPaused) {
-              setSeconds((prevState) => {
-                return prevState - 1;
-              });
-            } else {
-              setSeconds(0);
+                if (isPaused) {
+                  setSeconds((prevState) => {
+                    return prevState - 1;
+                  });
+                } else {
+                  setSeconds(0);
+                }
+
+                console.error(start);
+              }}
+            >
+              <FontAwesomeIcon icon={faPlay} />
+            </button>
+            <button
+              onClick={() => {
+                console.log('CON RESET');
+                setSeconds(0);
+                setStart(false);
+                setIsPaused(false);
+                clearInterval(interval);
+                setMinutes(2);
+                resetCountDown();
+              }}
+            >
+              <FontAwesomeIcon color="" icon={faStop} />
+            </button>
+            {
+              <button
+                disabled={!start}
+                onClick={() => {
+                  clearInterval(interval);
+
+                  setIsPaused(true);
+                  setStart(false);
+                }}
+              >
+                <FontAwesomeIcon color="" icon={faPause} />
+              </button>
             }
+          </div>
+        </div>
 
-            console.error(start);
-          }}
-        >
-          Start
-        </button>
-        <button
-          onClick={() => {
-            console.log('CON RESET');
-            setSeconds(0);
-            setStart(false);
-            setIsPaused(false);
-            clearInterval(interval);
-            setMinutes(2);
-            resetCountDown();
-          }}
-        >
-          Reset
-        </button>
-        {
-          <button
-            disabled={!start}
-            onClick={() => {
-              clearInterval(interval);
-
-              setIsPaused(true);
-              setStart(false);
-            }}
-          >
-            Pause
-          </button>
-        }
         {/*start && (
           <button
             onClick={() => {
