@@ -93,6 +93,19 @@ const Pomodoro = () => {
     if (minutes === 0 && seconds === 0 && cycleFinished) {
       audioRef.current.play();
       setStart(false);
+      setIsPaused(false);
+
+      if (isBreak) {
+        setSeconds(0);
+        clearInterval(interval);
+        setMinutes(1);
+        resetCountDown();
+      } else {
+        setSeconds(0);
+        clearInterval(interval);
+        setMinutes(2);
+        resetCountDown();
+      }
     }
   }, [cycleFinished]);
   return (
@@ -210,7 +223,6 @@ const Pomodoro = () => {
                   setIsPaused(false);
                   setSeconds(0);
                   setStart(false);
-
                   clearInterval(interval);
                   setMinutes(1);
                   resetCountDown();
