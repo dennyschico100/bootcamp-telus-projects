@@ -3,8 +3,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home/index';
 import MaskedInput from './components/MaskedInput/index';
+import Pomodoro from './components/Pomodoro/index';
+
 function App() {
-  return <MaskedInput></MaskedInput>;
+  return <Pomodoro></Pomodoro>;
 }
 
 export default App;
