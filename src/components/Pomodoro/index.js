@@ -6,6 +6,8 @@ import {
   faStop,
   faPause,
   faBars,
+  faCog,
+  faClose,
   faL,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,14 +20,19 @@ import {
 import 'react-circular-progressbar/dist/styles.css';
 
 const Pomodoro = () => {
-  const [minutes, setMinutes] = useState(2);
+  const [minutes, setMinutes] = useState(() => {
+    return window.localStorage.getItem('pomodoroCycle') || 25;
+  });
   const [seconds, setSeconds] = useState(0);
   const [start, setStart] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isBreak, setIsBreak] = useState(null);
+  const [isLongBreak, setIsLongBreak] = useState(false);
 
+  const [showDivOpacity, setShowDivOpacty] = useState(false);
   const [percentage, setPercentage] = useState(0);
   const audioRef = useRef(null);
+  const divSettings = useRef(null);
   //const percentageIncrement = (1 * 60) / 100;
 
   const [cycleFinished, setCycleFinished] = useState(false);
@@ -67,11 +74,11 @@ const Pomodoro = () => {
         const leftSeconds = minutes * 60 + (seconds - 1);
 
         const percentageIncrement = leftSeconds / totalSeconds;
-        console.warn(
+        /*console.warn(
           `leftseconds ${leftSeconds} totalseconds ${totalSeconds} minutos ${minutes} y segungods ${seconds}`
-        );
+        );*/
         setPercentage(100 - Math.floor(percentageIncrement * 100));
-        console.warn(`${percentage} %`);
+        //console.warn(`${percentage} %`);
 
         if (percentage < 0) {
           console.log('PERCENTAGE CERO');
@@ -87,9 +94,9 @@ const Pomodoro = () => {
   }, [start, seconds]);
 
   useEffect(() => {
-    console.log(
+    /*console.log(
       `minutos ${minutes} segundos ${seconds} ya termino ${cycleFinished}`
-    );
+    );*/
     if (minutes === 0 && seconds === 0 && cycleFinished) {
       audioRef.current.play();
       setStart(false);
@@ -98,32 +105,114 @@ const Pomodoro = () => {
       if (isBreak) {
         setSeconds(0);
         clearInterval(interval);
-        setMinutes(1);
+        setMinutes(() => {
+          return window.localStorage.getItem('shortBreak') || 5;
+        });
         resetCountDown();
       } else {
         setSeconds(0);
         clearInterval(interval);
-        setMinutes(2);
+        setMinutes(() => {
+          return window.localStorage.getItem('pomodoroCycle') || 25;
+        });
         resetCountDown();
       }
     }
   }, [cycleFinished]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowDivOpacty(false);
+    const { pomodoroCycle, shortBreak, longBreak } = event.target;
+    console.error(longBreak.value);
+    window.localStorage.setItem('shortBreak', shortBreak.value);
+    window.localStorage.setItem('largeBreakMinutes', longBreak.value);
+    window.localStorage.setItem('pomodoroCycle', pomodoroCycle.value);
+    /*setMinutes(() => {
+      return window.localStorage.getItem('pomodoroCycle') || 2;
+    });*/
+    clearInterval(interval);
+    resetCountDown();
+    if (isBreak) {
+      setMinutes(() => {
+        return window.localStorage.getItem('breakMinutes') || 5;
+      });
+    } else {
+      setMinutes(() => {
+        return window.localStorage.getItem('pomodoroCycle') || 25;
+      });
+    }
+  };
   return (
     <>
+      <div
+        className={
+          showDivOpacity ? 'container-opacity' : 'container-opacity-none'
+        }
+        ref={divSettings}
+        style={{}}
+      ></div>
+      <div
+        className={showDivOpacity ? 'form-settings-show' : 'form-settings-hide'}
+      >
+        <div className="row">
+          <form
+            action=""
+            onSubmit={(event) => {
+              handleSubmit(event);
+            }}
+          >
+            <a
+              href="#"
+              style={{ float: 'right' }}
+              onClick={() => {
+                setShowDivOpacty(false);
+              }}
+            >
+              <FontAwesomeIcon icon={faClose} />
+            </a>
+            <div className="col-md-4">
+              <label htmlFor="">Pomodoro</label>
+              <input type="number" name="pomodoroCycle" id="" />
+            </div>
+            <div className="col-md-4">
+              <label htmlFor="">Short break</label>
+              <input type="number" name="shortBreak" id="" />
+            </div>
+            <div className="col-md-4">
+              <label htmlFor="">Long break</label>
+              <input type="number" name="longBreak" id="" />
+            </div>
+            <button
+              style={{
+                backgroundColor: 'gold',
+                color: '#000',
+                border: '0',
+                marginTop: '0.5rem',
+              }}
+              onClick={() => {}}
+            >
+              Guardar
+            </button>
+          </form>
+        </div>
+      </div>
       <details>
         <summary>
           {' '}
           <FontAwesomeIcon icon={faBars} />
         </summary>
-        <nav style={{ height: '100px' }} className=" menu">
+        <nav style={{ height: '100px' }} className="menu">
           <a
             href="#"
             onClick={() => {
               setStart(false);
               setIsPaused(false);
               setIsBreak(false);
+              setIsLongBreak(false);
               setSeconds(0);
-              setMinutes(2);
+              setMinutes(() => {
+                return window.localStorage.getItem('pomodoroCycle') || 25;
+              });
               resetCountDown();
             }}
           >
@@ -135,16 +224,12 @@ const Pomodoro = () => {
               //setStart(false);
               setIsPaused(false);
               setIsBreak(true);
+              setIsLongBreak(false);
               setSeconds(0);
-              setMinutes(1);
+              setMinutes(() => {
+                return window.localStorage.getItem('shortBreak') || 5;
+              });
               resetCountDown();
-              console.warn(`${percentage} %%`);
-
-              //window.localStorage.setItem('totalSeconds', minutes * 60);
-
-              console.log(
-                parseInt(window.localStorage.getItem('breakMinutes'))
-              );
               window.localStorage.setItem(
                 'totalSeconds',
                 parseInt(window.localStorage.getItem('breakMinutes'))
@@ -158,17 +243,46 @@ const Pomodoro = () => {
           >
             Break
           </a>
-          <a href="#">Long break</a>
+          <a
+            href="#"
+            onClick={() => {
+              setIsPaused(false);
+              setIsBreak(false);
+              setIsLongBreak(true);
+              setSeconds(0);
+              setMinutes(() => {
+                return window.localStorage.getItem('largeBreakMinutes') || 15;
+              });
+              resetCountDown();
+              window.localStorage.setItem(
+                'totalSeconds',
+                parseInt(window.localStorage.getItem('largeBreakMinutes'))
+              );
+              setCycleFinished(false);
+            }}
+          >
+            Long break
+          </a>
+          <a
+            href="#"
+            onClick={() => {
+              setShowDivOpacty(true);
+            }}
+          >
+            Settings
+          </a>
         </nav>
       </details>
+
       <div className="container">
         <div
           className="cycle-container row mt-2"
           style={{ border: '2px solid blue' }}
         >
           <h1 className="text-center text-white">
-            {start && !isBreak ? 'Work time' : ''}
+            {!isBreak && !isLongBreak ? 'Work time' : ''}
             {isBreak && start ? 'Break time ' : ''}
+            {isLongBreak && !isBreak ? 'Long break ' : ''}
           </h1>
           <audio id="chatAudio" ref={audioRef}>
             <source
@@ -198,10 +312,13 @@ const Pomodoro = () => {
                 setCycleFinished(false);
                 setIsPaused(false);
 
-                window.localStorage.setItem(
-                  'pomodoros',
-                  parseInt(window.localStorage.getItem('pomodoros')) + 1
-                );
+                let getPomodoros =
+                  window.localStorage.getItem('pomodoros') ?? 0;
+                getPomodoros++;
+
+                window.localStorage.setItem('pomodoros', getPomodoros);
+
+                console.error(window.localStorage.getItem('pomodoros'));
                 if (isPaused) {
                   setSeconds((prevState) => {
                     return prevState - 1;
@@ -218,13 +335,27 @@ const Pomodoro = () => {
             </button>
             <button
               onClick={() => {
-                console.log(`es break ${isBreak}`);
+                console.log(`es break ${isBreak} es long breaj ${isLongBreak}`);
                 if (isBreak) {
                   setIsPaused(false);
                   setSeconds(0);
                   setStart(false);
                   clearInterval(interval);
-                  setMinutes(1);
+                  setMinutes(() => {
+                    return window.localStorage.getItem('shortBreak') || 5;
+                  });
+                  resetCountDown();
+                } else if (isLongBreak) {
+                  setIsPaused(false);
+                  setIsBreak(false);
+                  setSeconds(0);
+                  setStart(false);
+                  clearInterval(interval);
+                  setMinutes(() => {
+                    return (
+                      window.localStorage.getItem('largeBreakMinutes') || 15
+                    );
+                  });
                   resetCountDown();
                 } else {
                   console.log('CON RESET');
@@ -232,7 +363,10 @@ const Pomodoro = () => {
                   setStart(false);
                   setIsPaused(false);
                   clearInterval(interval);
-                  setMinutes(2);
+
+                  setMinutes(() => {
+                    return window.localStorage.getItem('pomodoroCycle') || 25;
+                  });
                   resetCountDown();
                 }
               }}

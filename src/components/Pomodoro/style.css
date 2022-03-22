@@ -15,6 +15,160 @@
 }
 
 .btns-container {
-  position: relative;
-  top: 2rem;
+  margin-top: 1rem;
+}
+.cycle {
+  height: 100px;
+  border: 1px solid red;
+  background-color: white;
+  margin: 1rem;
+}
+
+:root {
+  --primColor: gold;
+  --secoColor: #555555;
+  --cornerRad: 4px;
+}
+
+details {
+  margin: 40px;
+  position: absolute;
+}
+
+summary {
+  width: 30px;
+  text-align: center;
+  background-color: var(--primColor);
+  border: 2px solid var(--secoColor);
+  border-radius: var(--cornerRad);
+  color: var(--secoColor);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: transform 200ms ease-in-out 0s;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+summary::before,
+summary::after {
+  position: static;
+  top: 0;
+  left: 0;
+}
+summary::before {
+  content: '';
+}
+summary::after {
+}
+summary:hover {
+  transform: scale(1.1);
+}
+summary::marker {
+  font-size: 0;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .menu {
+  animation: menuAnim 300ms linear forwards;
+}
+details[open] summary::before {
+}
+details[open] summary::after {
+  content: '';
+}
+.menu {
+  border-radius: var(--cornerRad);
+  background-color: #ccf2ee;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: closeMenu 300ms ease-in-out forwards;
+}
+
+.menu a:hover {
+  background-color: #003049;
+
+  color: #fff;
+}
+.menu a {
+  color: var(--secoColor);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  text-align: center;
+  padding: 1rem;
+  color: #000;
+  transition: filter 200ms linear 0s;
+}
+.menu a:nth-of-type(1) {
+  padding-top: 24px;
+}
+.menu a:nth-last-of-type(1) {
+  border-bottom: none;
+}
+.menu a:hover {
+  filter: brightness(200%);
+}
+details::before {
+  color: var(--secoColor);
+  position: absolute;
+  margin-left: 80px;
+  padding: 10px 10px;
+  opacity: 0.4;
+}
+details[open]::before {
+  animation: fadeMe 300ms linear forwards;
+}
+@keyframes menuAnim {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: auto;
+  }
+}
+@keyframes fadeMe {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.container-opacity {
+  z-index: 1;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  background: #264653;
+  opacity: 0.7;
+}
+.container-opacity-none {
+}
+.form-settings-show {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  position: absolute;
+
+  transform: translate(60%, 35%);
+  transition: all 0.2s ease-out;
+  background-color: #fff;
+  padding: 1rem;
+}
+.form-settings-hide {
+  visibility: hidden;
+  position: absolute;
 }
