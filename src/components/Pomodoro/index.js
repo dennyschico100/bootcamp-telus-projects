@@ -46,7 +46,9 @@ const Pomodoro = () => {
     console.log('useEffect run first render');
     window.localStorage.setItem('totalSeconds', minutes * 60);
     window.localStorage.setItem('breakMinutes', 1 * 60);
-    window.localStorage.setItem('largeBreakMinutes', 15 * 60);
+    window.localStorage.setItem('largeBreakMinutes', 15);
+    window.localStorage.setItem('largeBreakSeconds', 15 * 60);
+
     window.localStorage.setItem('pomodoros', 0);
     document.body.style.background = '#003049';
   }, []);
@@ -221,7 +223,7 @@ const Pomodoro = () => {
           <a
             href="#"
             onClick={() => {
-              //setStart(false);
+              setStart(false);
               setIsPaused(false);
               setIsBreak(true);
               setIsLongBreak(false);
@@ -246,6 +248,7 @@ const Pomodoro = () => {
           <a
             href="#"
             onClick={() => {
+              setStart(false);
               setIsPaused(false);
               setIsBreak(false);
               setIsLongBreak(true);
@@ -256,7 +259,7 @@ const Pomodoro = () => {
               resetCountDown();
               window.localStorage.setItem(
                 'totalSeconds',
-                parseInt(window.localStorage.getItem('largeBreakMinutes'))
+                parseInt(window.localStorage.getItem('largeBreakSecods'))
               );
               setCycleFinished(false);
             }}
