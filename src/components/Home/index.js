@@ -4,7 +4,7 @@ import './estilos.css';
 const dataCardRender = [
   {
     name: 'Pomodoro',
-    jumpTo: 'Masked Input',
+    jumpTo: 'pomodoro',
     color: '#0c1c84',
     src: '',
   },
@@ -16,7 +16,7 @@ const dataCardRender = [
   },
   {
     name: 'JSON to CSV',
-    jumpTo: 'JSONToCSV',
+    jumpTo: 'json-csv',
     color: '#009cde',
     src: '',
   },

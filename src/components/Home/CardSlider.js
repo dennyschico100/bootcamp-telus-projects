@@ -12,9 +12,9 @@ function CardSlider({ className, title, src, jumpTo, color }) {
           alt={'infrasal ' + title}
           className="img-fluid"
         />
-        <span className="">
-          <a href={jumpTo} className="text-center">
-            {'referencia'}
+        <span style={{ backgroundColor: 'beige' }}>
+          <a href={jumpTo} className="text-center text-dark">
+            {title}
           </a>
         </span>
       </div>

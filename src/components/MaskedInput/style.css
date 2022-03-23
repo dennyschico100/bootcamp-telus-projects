@@ -1,10 +1,5 @@
-body {
-  /* background: linear-gradient(to top, #ff9671, #9198e5);
-*/
-}
-
-.container .row {
-  /* background: white;*/
+#masked-form .row {
+  background: white;
 }
 h2 {
   color: #7b2cbf;
