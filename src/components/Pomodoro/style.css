@@ -172,3 +172,18 @@ details[open]::before {
   visibility: hidden;
   position: absolute;
 }
+.statistics-show {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  position: absolute;
+
+  transform: translate(35%, 50%);
+  transition: all 0.2s ease-out;
+  background-color: #fff;
+  padding: 1rem;
+}
+.statistics-hide {
+  visibility: hidden;
+  position: absolute;
+}

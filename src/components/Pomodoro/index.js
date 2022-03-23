@@ -30,6 +30,9 @@ const Pomodoro = () => {
   const [isLongBreak, setIsLongBreak] = useState(false);
 
   const [showDivOpacity, setShowDivOpacty] = useState(false);
+  const [showDivOpacityStatistics, setShowDivOpactyStatistics] =
+    useState(false);
+
   const [percentage, setPercentage] = useState(0);
   const audioRef = useRef(null);
   const divSettings = useRef(null);
@@ -50,6 +53,9 @@ const Pomodoro = () => {
     window.localStorage.setItem('largeBreakSeconds', 15 * 60);
 
     window.localStorage.setItem('pomodoros', 0);
+    window.localStorage.setItem('totalShortBreaks', 0);
+    window.localStorage.setItem('totalLongBreaks', 0);
+
     document.body.style.background = '#003049';
   }, []);
   useEffect(() => {
@@ -148,7 +154,9 @@ const Pomodoro = () => {
     <>
       <div
         className={
-          showDivOpacity ? 'container-opacity' : 'container-opacity-none'
+          showDivOpacity || showDivOpacityStatistics
+            ? 'container-opacity'
+            : 'container-opacity-none'
         }
         ref={divSettings}
         style={{}}
@@ -198,6 +206,47 @@ const Pomodoro = () => {
           </form>
         </div>
       </div>
+      <div
+        className={
+          showDivOpacityStatistics
+            ? 'col-md-4 statistics-show'
+            : 'statistics-hide'
+        }
+      >
+        {' '}
+        <a
+          href="#"
+          style={{ float: 'right' }}
+          onClick={() => {
+            setShowDivOpactyStatistics(false);
+          }}
+        >
+          <FontAwesomeIcon icon={faClose} />
+        </a>
+        <div className="row" style={{ border: '3px solid black' }}>
+          <h2 className="text-center"> Estadisiticas</h2>
+          <div className="col-md-12">
+            <div className="row">
+              <div className="col-md-6">
+                <label htmlFor="">Pomodoros</label>
+                <label htmlFor="">Descansos cortos</label>
+                <label htmlFor="">Descandos largos</label>
+              </div>
+              <div className="col-md-6">
+                <label className="col-12" htmlFor="">
+                  {window.localStorage.getItem('pomodoros')}
+                </label>
+                <label className="col-12" htmlFor="">
+                  {window.localStorage.getItem('totalShortBreaks')}
+                </label>
+                <label className="col-12" htmlFor="">
+                  {window.localStorage.getItem('totalLongBreaks')}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <details>
         <summary>
           {' '}
@@ -243,7 +292,7 @@ const Pomodoro = () => {
               setCycleFinished(false);
             }}
           >
-            Break
+            Short Break
           </a>
           <a
             href="#"
@@ -273,6 +322,14 @@ const Pomodoro = () => {
             }}
           >
             Settings
+          </a>
+          <a
+            href="#"
+            onClick={() => {
+              setShowDivOpactyStatistics(true);
+            }}
+          >
+            Estadisticas
           </a>
         </nav>
       </details>
@@ -315,13 +372,29 @@ const Pomodoro = () => {
                 setCycleFinished(false);
                 setIsPaused(false);
 
-                let getPomodoros =
-                  window.localStorage.getItem('pomodoros') ?? 0;
-                getPomodoros++;
+                if (isBreak) {
+                  let getShortBreaks =
+                    window.localStorage.getItem('totalShortBreaks') ?? 0;
+                  getShortBreaks++;
 
-                window.localStorage.setItem('pomodoros', getPomodoros);
+                  window.localStorage.setItem(
+                    'totalShortBreaks',
+                    getShortBreaks
+                  );
+                } else if (isLongBreak) {
+                  let getLongBreaks =
+                    window.localStorage.getItem('totalLongBreaks') ?? 0;
+                  getLongBreaks++;
 
-                console.error(window.localStorage.getItem('pomodoros'));
+                  window.localStorage.setItem('totalLongBreaks', getLongBreaks);
+                } else {
+                  let getPomodoros =
+                    window.localStorage.getItem('pomodoros') ?? 0;
+                  getPomodoros++;
+
+                  window.localStorage.setItem('pomodoros', getPomodoros);
+                }
+
                 if (isPaused) {
                   setSeconds((prevState) => {
                     return prevState - 1;
