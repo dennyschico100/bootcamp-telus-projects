@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/Home/index';
 import PomodoroComponent from './components/Pomodoro/index';
 import MaskedInputComponent from './components/MaskedInput/index';
+import JsonCsv from './components/JsonCsv/index';
 
 export default class Routes extends React.PureComponent {
   render() {
@@ -18,6 +19,7 @@ export default class Routes extends React.PureComponent {
               path="/masked-input"
               component={MaskedInputComponent}
             />
+            <Route exact path="/json-csv" component={JsonCsv} />
           </Switch>
         </Router>
       </React.Fragment>

@@ -10,7 +10,7 @@ const dataCardRender = [
   },
   {
     name: 'Masked Input ',
-    jumpTo: 'Masked Input',
+    jumpTo: 'masked-input',
     color: '#f07e0e',
     src: '',
   },
@@ -38,7 +38,7 @@ function HomeMenu() {
   return (
     <div className="gallery" style={{ padding: '5%', border: '3px solid red' }}>
       {dataCardRender.map(({ name, src, jumpTo, color }, i) => (
-        <div className="feature">
+        <div className="feature" key={name}>
           <CardSlider
             title={name}
             src={src}

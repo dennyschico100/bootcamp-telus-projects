@@ -28,6 +28,10 @@ const years = [
 ];
 const MaskedInput = () => {
   const [state, setSate] = useState({ cardType: '' });
+  const [isInMaskedInputPath, setIsInMaskedInputPath] = useState(
+    window.location.pathname.split('/')
+  );
+
   const handleCardType = (e) => {
     /*let cardTypeSelection =
       e.target.value === 'Visa' ? '/^[0-9]{9}$/' : '/^(?:5[1-5][0-9]{14})$/';
@@ -47,6 +51,10 @@ const MaskedInput = () => {
     console.log(state);
   }, [state]);
 
+  if (isInMaskedInputPath[1] === 'masked-input') {
+    document.body.style.background =
+      'linear-gradient(to top, #ff9671, #9198e5)';
+  }
   const validationSchema = yup.object().shape({
     nombres: yup
       .string()
@@ -104,7 +112,7 @@ const MaskedInput = () => {
 
   return (
     <>
-      <div className="container " style={{ border: 'px solid red' }}>
+      <div className="container " style={{ border: '2px solid red' }}>
         <Formik
           initialValues={{
             nombres: '',
@@ -137,11 +145,8 @@ const MaskedInput = () => {
             errors,
             touched,
           }) => (
-            <Form className=" col-md-6 offset-md-3  ">
-              <div
-                className="row p-2 mt-3"
-                style={{ border: 'px solid yellow' }}
-              >
+            <Form id="masked-form" className=" col-md-6 offset-md-3  ">
+              <div className="row p-2 mt-3">
                 <h2 className="text-center">REGISTRO</h2>
 
                 <div className="form-group col-md-6 col-12">

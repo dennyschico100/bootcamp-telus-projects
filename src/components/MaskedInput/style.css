@@ -7,6 +7,11 @@ h2 {
 
 .btn {
   background: #7b2cbf;
+  color: #fff;
+}
+.btn:hover {
+  background: #a3e7e1;
+  border: 2px solid #7b2cbf;
 }
 .btn-enviar {
   color: #fff;
