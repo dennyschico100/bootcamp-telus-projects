@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const JsonCsv = () => {
   const [isInJsonCsvPath, setIsInJsonCsvPath] = useState(
     window.location.pathname.split('/')
   );
-  const [state, setState] = useState({ defaultJson: '' });
+  const [state, setState] = useState({ defaultJson: '', csv: '' });
+
+  const download = useRef(null);
+
   const exampleJson = [
     {
       id: 1,
@@ -34,6 +37,7 @@ const JsonCsv = () => {
   const handleDefaultJson = (event) => {
     setState({ ...state, defaultJson: event.target.value });
   };
+  const handleCsv = () => {};
   useEffect(() => {
     if (isInJsonCsvPath[1] === 'json-csv') {
       document.body.style.background = '#e0f7f5';
@@ -57,8 +61,15 @@ const JsonCsv = () => {
               onChange={handleDefaultJson}
             ></textarea>
             <div className="d-flex justify-content-between mt-3">
-              <button className="btn">Limpiar entrada</button>
               <button
+                className="btn"
+                onClick={() => {
+                  setState({ defaultJson: '' });
+                }}
+              >
+                Limpiar entrada
+              </button>
+              {/*<button
                 className="btn"
                 onClick={() => {
                   //setExample(JSON.stringify(defaultJson));
@@ -68,6 +79,21 @@ const JsonCsv = () => {
                 }}
               >
                 Fomartear Json
+              </button> */}
+              <button
+                className="btn"
+                onClick={() => {
+                  let json = JSON.parse(state.defaultJson);
+
+                  console.log(typeof json);
+                  let csv = json.map((row) => Object.values(row));
+                  csv.unshift(Object.keys(json[0]));
+                  let finalCsv = `"${csv.join('"\n"').replace(/,/g, '","')}"`;
+                  console.log(finalCsv);
+                  setState({ ...state, csv: finalCsv });
+                }}
+              >
+                Convertir
               </button>
               <button
                 className="btn "
@@ -89,7 +115,25 @@ const JsonCsv = () => {
               placeholder=""
               id="exampleFormControlTextarea1"
               rows="3"
+              value={state.csv}
+              onChange={handleCsv}
             ></textarea>
+            <a
+              className="btn mt-2"
+              ref={download}
+              onClick={() => {
+                const url = window.URL.createObjectURL(new Blob([state.csv]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', `FileName.csv`);
+
+                document.body.appendChild(link);
+
+                link.click();
+              }}
+            >
+              Descargar
+            </a>
           </div>
         </div>
       </div>
