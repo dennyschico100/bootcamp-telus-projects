@@ -27,7 +27,10 @@ const years = [
   '2027',
 ];
 const MaskedInput = () => {
-  const [state, setSate] = useState({ cardType: '' });
+  const [state, setState] = useState({
+    cardType: '',
+    fillEmergencyFields: false,
+  });
   const [isInMaskedInputPath, setIsInMaskedInputPath] = useState(
     window.location.pathname.split('/')
   );
@@ -36,7 +39,7 @@ const MaskedInput = () => {
     /*let cardTypeSelection =
       e.target.value === 'Visa' ? '/^[0-9]{9}$/' : '/^(?:5[1-5][0-9]{14})$/';
     console.error(cardTypeSelection);*/
-    setSate(() => {
+    setState(() => {
       return {
         cardType:
           e.target.value === 'Visa'
@@ -101,6 +104,19 @@ const MaskedInput = () => {
       .string()
       .max(3, 'Ingresa solo 3 digitos')
       .required('Completa este campo'),
+    nombresEmergencia: yup
+      .string()
+      .min(3, 'Ingresa al menos 3 caracteres')
+      .required('Completa este campo'),
+    primerApellidoEmergencia: yup
+      .string()
+      .min(3, 'Ingresa al menos 3 caracteres')
+      .required('Completa este campo'),
+    segundoApellidoEmergencia: yup
+      .string()
+      .min(3, 'Ingresa al menos 3 caracteres')
+      .required('Completa este campo'),
+    fechaNacimientoEmergencia: yup.date().required('Completa este campo'),
   });
   /*let today = new Date();
   const month = new String(today.getMonth() + 1);
@@ -112,7 +128,7 @@ const MaskedInput = () => {
 
   return (
     <>
-      <div className="container " style={{ border: '2px solid red' }}>
+      <div className="container " style={{ border: 'px solid red' }}>
         <Formik
           initialValues={{
             nombres: '',
@@ -131,6 +147,14 @@ const MaskedInput = () => {
             expireMonth: '',
             expireYear: '',
             cvc: '',
+            nombresEmergencia: '',
+            primerApellidoEmergencia: '',
+            segundoApellidoEmergencia: '',
+            fechaNacimientoEmergencia: new Date(),
+            emailEmergencia: '',
+            direccionEmergencia: '',
+            codigoMarcadoEmergencia: '',
+            numeroTelefonoEmergencia: '',
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => {
@@ -146,7 +170,7 @@ const MaskedInput = () => {
             touched,
           }) => (
             <Form id="masked-form" className=" col-md-6 offset-md-3  ">
-              <div className="row p-2 mt-3">
+              <div className="row  mt-3">
                 <h2 className="text-center">REGISTRO</h2>
 
                 <div className="form-group col-md-6 col-12">
@@ -442,10 +466,186 @@ const MaskedInput = () => {
                   ) : null}
                 </div>
               </div>
+              <div className="row pt-5 pb-3">
+                <div className="col-12 col-md-6">
+                  <label htmlFor="">Datos de emergencia</label>
+                </div>
+                <div className="col-md-6">
+                  <input
+                    type="checkbox"
+                    className=""
+                    onChange={() => {
+                      setState({
+                        ...state,
+                        fillEmergencyFields: !state.fillEmergencyFields,
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+              {state.fillEmergencyFields && (
+                <>
+                  <div className="row">
+                    <div className="form-group col-md-6 col-12">
+                      <label className="col-form-label" htmlFor="">
+                        Nombre
+                      </label>
+                      <input
+                        className="form-control border-1 border-secondary"
+                        name="nombresEmergencia"
+                        type="text"
+                        value={values.nombresEmergencia}
+                        onChange={handleChange}
+                      />
+                      {errors.nombresEmergencia && touched.nombresEmergencia ? (
+                        <span className="text-danger">{errors.nombres}</span>
+                      ) : null}
+                    </div>
+                    <div className="form-group col-md-6 col-12 ">
+                      <label className="col-form-label" htmlFor="">
+                        Primer Apellido
+                      </label>
+                      <input
+                        className="form-control"
+                        name="primerApellidoEmergencia"
+                        onChange={handleChange}
+                        type="text"
+                        value={values.primerApellidoEmergencia}
+                      />
+                      {errors.primerApellidoEmergencia &&
+                      touched.primerApellidoEmergencia ? (
+                        <span className="text-danger">
+                          {errors.primerApellido}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="form-group col-md-6 col-12">
+                      <label className="col-form-label" htmlFor="">
+                        Segundo Apellido
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="segundoApellidoEmergencia"
+                        onChange={handleChange}
+                        value={values.segundoApellidoEmergencia}
+                      />
+                      {errors.segundoApellido &&
+                      touched.segundoApellidoEmergencia ? (
+                        <span className="text-danger">
+                          {errors.segundoApellidoEmergencia}
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="form-group col-md-6 col-12">
+                      <label className="col-form-label" htmlFor="">
+                        Fecha de nacimiento
+                      </label>
+                      <DatePicker
+                        selected={values.fechaNacimientoEmergencia}
+                        dateFormat="MMMM d, yyyy"
+                        className="form-control col-md-3 col-12"
+                        name="fechaNacimientoEmergencia"
+                        onChange={(date) =>
+                          setFieldValue('fechaNacimiento', date)
+                        }
+                      />
+                      {errors.fechaNacimientoEmergencia &&
+                      touched.fechaNacimientoEmergencia ? (
+                        <span className="text-danger">
+                          {errors.fechaNacimientoEmergencia}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="form-group col-md-6 col-12">
+                      <label className="col-form-label" htmlFor="">
+                        Email
+                      </label>
+                      <input
+                        className="form-control"
+                        name="emailEmergencia"
+                        type="text"
+                        value={values.emailEmergencia}
+                        onChange={handleChange}
+                      />
+                      {errors.emailEmergencia && touched.emailEmergencia ? (
+                        <span className="text-danger">
+                          {errors.emailEmergencia}
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="form-group col-md-6 col-12">
+                      <label className="col-form-label" htmlFor="">
+                        Direccion
+                      </label>
+                      <input
+                        className="form-control"
+                        name="direccionEmergencia"
+                        type="text"
+                        value={values.direccionEmergencia}
+                        onChange={handleChange}
+                      />
+                      {errors.direccionEmergencia &&
+                      touched.direccionEmergencia ? (
+                        <span className="text-danger">
+                          {errors.direccionEmergencia}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className=" col-md-12 ">
+                      <div>
+                        {' '}
+                        <label className="col-form-label" htmlFor=""></label>
+                      </div>{' '}
+                      Telefono
+                      <div className="row">
+                        {' '}
+                        <div className="col-md-6">
+                          <select
+                            className="form-control"
+                            name="codigoMarcadoEmergencia"
+                            onChange={handleChange}
+                          >
+                            {' '}
+                            <option value="">Seleccione</option>
+                            <option value={values.codigoMarcadoEmergencia}>
+                              503
+                            </option>
+                            <option value={values.codigoMarcadoEmergencia}>
+                              502
+                            </option>
+                          </select>
+                        </div>
+                        <div className="col-sm-6 col-12 col-md-6">
+                          <input
+                            className="form-control"
+                            name="numeroTelefonoEmergencia"
+                            type="text"
+                            value={values.numeroTelefonoEmergencia}
+                            onChange={handleChange}
+                          />
+                          {errors.numeroTelefonoEmergencia &&
+                          touched.numeroTelefonoEmergencia ? (
+                            <span className="text-danger">
+                              {errors.numeroTelefonoEmergencia}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
               <div className="row pb-3">
                 <div className="col-md-6 offset-md-3 mt-3">
                   <button
-                    className="mt-3 form-control btn btn-enviar"
+                    className="mt-3 form-control btn-enviar"
                     type="submit"
                   >
                     Enviar

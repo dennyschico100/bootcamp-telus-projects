@@ -15,8 +15,11 @@ h2 {
 }
 .btn-enviar {
   color: #fff;
+  background: #7b2cbf;
+
 }
 .btn-enviar:hover {
   color: #fff;
+  background: #7b2cbf;
   transform: scale(0.9);
 }
