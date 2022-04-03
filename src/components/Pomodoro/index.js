@@ -337,7 +337,7 @@ const Pomodoro = () => {
       <div className="container">
         <div
           className="cycle-container row mt-2"
-          style={{ border: '2px solid blue' }}
+          style={{ border: 'px solid blue' }}
         >
           <h1 className="text-center text-white">
             {!isBreak && !isLongBreak ? 'Work time' : ''}

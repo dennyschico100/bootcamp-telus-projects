@@ -673,10 +673,7 @@ const MaskedInput = () => {
                 </>
               )}
               <div className="row pb-3">
-                <div
-                  className="col-md-8 offset-md-2  d-flex justify-content-between mt-3"
-                  style={{ border: '3px solid red' }}
-                >
+                <div className="col-md-8 offset-md-2  d-flex justify-content-between mt-3">
                   <button className="mt-3 col-5   btn-enviar" type="submit">
                     Enviar
                   </button>
