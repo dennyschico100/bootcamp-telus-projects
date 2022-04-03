@@ -182,15 +182,15 @@ const Pomodoro = () => {
             </a>
             <div className="col-md-4">
               <label htmlFor="">Pomodoro</label>
-              <input type="number" name="pomodoroCycle" id="" />
+              <input type="number" min="1" name="pomodoroCycle" id="" />
             </div>
             <div className="col-md-4">
               <label htmlFor="">Short break</label>
-              <input type="number" name="shortBreak" id="" />
+              <input type="number" min="1" name="shortBreak" id="" />
             </div>
             <div className="col-md-4">
               <label htmlFor="">Long break</label>
-              <input type="number" name="longBreak" id="" />
+              <input type="number" min="1" name="longBreak" id="" />
             </div>
             <button
               style={{
