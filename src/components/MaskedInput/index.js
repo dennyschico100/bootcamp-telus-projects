@@ -112,11 +112,24 @@ const MaskedInput = () => {
       .string()
       .min(3, 'Ingresa al menos 3 caracteres')
       .required('Completa este campo'),
+    emailEmergencia: yup
+      .string()
+      .email('Email invalido')
+      .required('Completa este campo'),
+    direccionEmergencia: yup
+      .string()
+      .min(3, 'Ingresa al menos 10 caracteres')
+      .required('Completa este campo'),
     segundoApellidoEmergencia: yup
       .string()
       .min(3, 'Ingresa al menos 3 caracteres')
       .required('Completa este campo'),
     fechaNacimientoEmergencia: yup.date().required('Completa este campo'),
+    codigoMarcadoEmergencia: yup.string().required('Completa este campo'),
+    numeroTelefonoEmergencia: yup
+      .string()
+      .matches(phoneReg, 'Numero de telefono invalido')
+      .required('Completa este campo'),
   });
   /*let today = new Date();
   const month = new String(today.getMonth() + 1);
@@ -159,6 +172,7 @@ const MaskedInput = () => {
           validationSchema={validationSchema}
           onSubmit={(values) => {
             console.log(values);
+            alert('enviado');
           }}
         >
           {({
@@ -168,6 +182,7 @@ const MaskedInput = () => {
             handleChange,
             errors,
             touched,
+            resetForm,
           }) => (
             <Form id="masked-form" className=" col-md-6 offset-md-3  ">
               <div className="row  mt-3">
@@ -289,10 +304,17 @@ const MaskedInput = () => {
                         onChange={handleChange}
                       >
                         {' '}
-                        <option value="">Seleccione</option>
-                        <option value={values.codigoMarcado}>503</option>
-                        <option value={values.codigoMarcado}>502</option>
+                        <option value="" defaultValue="">
+                          Seleccione
+                        </option>
+                        <option value="503">503</option>
+                        <option value="502">502</option>
                       </select>
+                      {errors.codigoMarcado && touched.codigoMarcado ? (
+                        <span className="text-danger">
+                          {errors.codigoMarcado}
+                        </span>
+                      ) : null}
                     </div>
                     <div className="col-sm-6 col-12 col-md-6">
                       <input
@@ -371,7 +393,9 @@ const MaskedInput = () => {
                     onChange={handleChange}
                     onBlur={handleCardType}
                   >
-                    <option value="">Selecciona</option>
+                    <option value="" defaultValue="">
+                      Selecciona
+                    </option>
                     <option value="Visa">Visa</option>
                     <option value="Mastercard">Mastercard</option>
                   </select>
@@ -498,7 +522,9 @@ const MaskedInput = () => {
                         onChange={handleChange}
                       />
                       {errors.nombresEmergencia && touched.nombresEmergencia ? (
-                        <span className="text-danger">{errors.nombres}</span>
+                        <span className="text-danger">
+                          {errors.nombresEmergencia}
+                        </span>
                       ) : null}
                     </div>
                     <div className="form-group col-md-6 col-12 ">
@@ -515,7 +541,7 @@ const MaskedInput = () => {
                       {errors.primerApellidoEmergencia &&
                       touched.primerApellidoEmergencia ? (
                         <span className="text-danger">
-                          {errors.primerApellido}
+                          {errors.primerApellidoEmergencia}
                         </span>
                       ) : null}
                     </div>
@@ -532,7 +558,7 @@ const MaskedInput = () => {
                         onChange={handleChange}
                         value={values.segundoApellidoEmergencia}
                       />
-                      {errors.segundoApellido &&
+                      {errors.segundoApellidoEmergencia &&
                       touched.segundoApellidoEmergencia ? (
                         <span className="text-danger">
                           {errors.segundoApellidoEmergencia}
@@ -613,14 +639,18 @@ const MaskedInput = () => {
                             onChange={handleChange}
                           >
                             {' '}
-                            <option value="">Seleccione</option>
-                            <option value={values.codigoMarcadoEmergencia}>
-                              503
+                            <option value="" defaultValue="">
+                              Seleccione
                             </option>
-                            <option value={values.codigoMarcadoEmergencia}>
-                              502
-                            </option>
+                            <option value="503">503</option>
+                            <option value="502">502</option>
                           </select>
+                          {errors.codigoMarcadoEmergencia &&
+                          touched.codigoMarcadoEmergencia ? (
+                            <span className="text-danger">
+                              {errors.codigoMarcadoEmergencia}
+                            </span>
+                          ) : null}
                         </div>
                         <div className="col-sm-6 col-12 col-md-6">
                           <input
@@ -643,12 +673,21 @@ const MaskedInput = () => {
                 </>
               )}
               <div className="row pb-3">
-                <div className="col-md-6 offset-md-3 mt-3">
-                  <button
-                    className="mt-3 form-control btn-enviar"
-                    type="submit"
-                  >
+                <div
+                  className="col-md-8 offset-md-2  d-flex justify-content-between mt-3"
+                  style={{ border: '3px solid red' }}
+                >
+                  <button className="mt-3 col-5   btn-enviar" type="submit">
                     Enviar
+                  </button>
+                  <button
+                    className="mt-3 col-5 btn-enviar"
+                    type="button"
+                    onClick={() => {
+                      resetForm();
+                    }}
+                  >
+                    Limpiar
                   </button>
                 </div>
               </div>

@@ -16,6 +16,8 @@ h2 {
 .btn-enviar {
   color: #fff;
   background: #7b2cbf;
+  border-radius: 3px ;
+  padding: 0.5rem;
 
 }
 .btn-enviar:hover {
