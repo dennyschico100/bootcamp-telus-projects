@@ -28,7 +28,7 @@ const dataCardRender = [
   },
   {
     name: 'One time Secret',
-    jumpTo: 'One time Secret',
+    jumpTo: 'secret',
     color: '#de0000',
     src: '',
   },
