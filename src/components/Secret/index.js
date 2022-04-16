@@ -33,7 +33,7 @@ const Secret = () => {
       setState({
         ...state,
         showLink: true,
-        linkGenerated: 'localhost:3000/secret/' + data.link,
+        linkGenerated: 'localhost:3000/show-secret/' + data.link,
       });
     } catch (error) {
       console.error(error);
@@ -63,7 +63,8 @@ const Secret = () => {
             </label>
             {state.showLink && (
               <>
-                <div className="d-flex flex-wrap justify-content-center  ">
+                <div className="d-flex flex-wrap justify-content-center   ">
+                  <h4 className="mt-5">Tu Link</h4>
                   <strong className="alert alert-primary  text-justify">
                     {state.linkGenerated}
                   </strong>
