@@ -223,7 +223,7 @@ const Pomodoro = () => {
         >
           <FontAwesomeIcon icon={faClose} />
         </a>
-        <div className="row" style={{ border: '3px solid black' }}>
+        <div className="row" style={{ border: 'px solid black' }}>
           <h2 className="text-center"> Estadisiticas</h2>
           <div className="col-md-12">
             <div className="row">

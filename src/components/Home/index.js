@@ -36,7 +36,7 @@ const dataCardRender = [
 
 function HomeMenu() {
   return (
-    <div className="gallery" style={{ padding: '5%', border: '3px solid red' }}>
+    <div className="gallery" style={{ padding: '5%' }}>
       {dataCardRender.map(({ name, src, jumpTo, color }, i) => (
         <div className="feature" key={name}>
           <CardSlider
