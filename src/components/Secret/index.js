@@ -92,7 +92,7 @@ const Secret = () => {
               onClick={() => {
                 saveLink();
               }}
-              className="btn-crear-secreto mt-2"
+              className="btn btn-crear-secreto mt-2"
             >
               Crear secreto
             </button>

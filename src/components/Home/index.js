@@ -22,7 +22,7 @@ const dataCardRender = [
   },
   {
     name: 'URL Shortener',
-    jumpTo: 'URL Shortener',
+    jumpTo: 'url-shortener',
     color: '#de0000',
     src: '',
   },

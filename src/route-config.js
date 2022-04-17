@@ -7,7 +7,7 @@ import MaskedInputComponent from './components/MaskedInput/index';
 import JsonCsv from './components/JsonCsv/index';
 import OneSecret from './components/Secret/index';
 import ShowSecret from './components/ShowSecret/index';
-
+import Shortener from './components/UrlShortener/index';
 export const routes = [
   {
     path: '/',
@@ -27,6 +27,11 @@ export const routes = [
   {
     path: '/json-csv',
     component: JsonCsv,
+    exact: true,
+  },
+  {
+    path: '/url-shortener',
+    component: Shortener,
     exact: true,
   },
   {
