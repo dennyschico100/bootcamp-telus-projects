@@ -33,7 +33,8 @@ const UrlShortener = () => {
                 };
                 console.log(options);
 
-                const url = 'http://localhost:4000/api/short-url/';
+                const url =
+                  'https://apibootcampdennys.herokuapp.com/api/short-url';
                 let shortUrl = 'localhost:4000/api/short-url/';
                 try {
                   const response = await fetch(url, options);

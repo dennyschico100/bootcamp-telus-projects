@@ -21,7 +21,7 @@ const Secret = () => {
     };
     console.log(options);
 
-    const url = 'http://localhost:4000/api/secret/';
+    const url = 'https://apibootcampdennys.herokuapp.com/api/secret';
     try {
       const response = await fetch(url, options);
 

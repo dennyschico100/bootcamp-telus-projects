@@ -32,6 +32,12 @@ const dataCardRender = [
     color: '#de0000',
     src: '',
   },
+  {
+    name: 'English app',
+    jumpTo: 'english-app',
+    color: '#de0000',
+    src: '',
+  },
 ];
 
 function HomeMenu() {

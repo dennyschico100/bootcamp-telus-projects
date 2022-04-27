@@ -8,6 +8,7 @@ import JsonCsv from './components/JsonCsv/index';
 import OneSecret from './components/Secret/index';
 import ShowSecret from './components/ShowSecret/index';
 import Shortener from './components/UrlShortener/index';
+import EnglishApp from './components/English';
 export const routes = [
   {
     path: '/',
@@ -42,6 +43,11 @@ export const routes = [
   {
     path: '/show-secret',
     component: ShowSecret,
+    exact: false,
+  },
+  {
+    path: '/english-app',
+    component: EnglishApp,
     exact: false,
   },
 ];
