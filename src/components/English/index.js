@@ -375,6 +375,8 @@ const EnglishApp = () => {
     secret: '',
   };
 
+  const jsQuestions = require('./jsquestions.json');
+  console.log(jsQuestions);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('words');
   const [wordInput, setWordInput] = useState('');
@@ -386,17 +388,60 @@ const EnglishApp = () => {
     { label: 'PHRASAL VERBS', value: 'phrasal' },
     { label: 'PERSONALITY', value: 'personality' },
     { label: 'DESCRIBE  PEOPLE', value: 'people' },
-    { label: 'PREVIOUS LECTURES', value: 'preverious-lectures' },
+    { label: 'javascript', value: 'js' },
   ]);
 
-  /*const saveData = async () => {
+  function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max) + 1;
+  }
+
+  const getData = async () => {
+    try {
+      setState({ data: [] });
+      setIsLoading(true);
+
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      console.log(options);
+
+      const url = 'https://api-bootcam.onrender.com/api/' + value;
+      const response = await fetch(url, options);
+      if (value === 'js') {
+      }
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      let results = [];
+
+      for (let index = 0; index < 5; index++) {
+        let generatedNumber = generateRandomInteger(data.length);
+        console.error(data[generatedNumber]);
+        results.push(data[generatedNumber]);
+      }
+      console.log('FINAL RESULT TO SHOW');
+      setState({ data: results });
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const saveData = async () => {
     if (phrasalSpanish.length === phrasals.length) {
       let arrObj = [];
-      const iterations = phrasalSpanish.length;
+      const iterations = jsQuestions.length;
       for (let index = 0; index < iterations; index++) {
         let wordObj = {
-          word: phrasals[index],
-          spanish: phrasalSpanish[index],
+          word: jsQuestions[index].question,
+          spanish: jsQuestions[index].answer,
         };
         arrObj.push(wordObj);
       }
@@ -426,63 +471,21 @@ const EnglishApp = () => {
         console.log(error);
       }
     }
-  };*/
-  const onPressGenerateData = () => {
-    console.log('click');
-    console.log(words.length);
-    console.log(spanish.length);
   };
-
-  function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max) + 1;
-  }
-
-  const getData = async () => {
-    try {
-      setState({ data: [] });
-      setIsLoading(true);
-
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      console.log(options);
-
-      const url = 'https://apibootcampdennys.herokuapp.com/api/' + value;
-      const response = await fetch(url, options);
-
-      if (!response.ok) {
-        throw new Error(`Error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log(data);
-
-      let results = [];
-
-      for (let index = 0; index < 5; index++) {
-        let generatedNumber = generateRandomInteger(data.length);
-        console.error(data[generatedNumber]);
-        results.push(data[generatedNumber]);
-      }
-      console.log('FINAL RESULT TO SHOW');
-      setState({ data: results });
-      setIsLoading(!true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const pickerChange = (item) => {
-    console.log(item);
-  };
-  const saveData = async () => {
+  /*const saveData = async () => {
     setIsLoading(true);
     const finalObj = {
       word: wordInput,
       spanish: spanishInput,
     };
+    if (value === 'js') {
+      jsQuestions.forEach((element) => {
+
+      });
+    } else {
+
+    }
+
     const options = {
       method: 'POST',
       body: JSON.stringify(finalObj),
@@ -507,7 +510,7 @@ const EnglishApp = () => {
       console.log(error);
       setIsLoading(!true);
     }
-  };
+  };*/
   const handleSpanishInput = async (event) => {
     console.log(event.target.value);
     setSpanishInput(event.target.value);
@@ -532,7 +535,7 @@ const EnglishApp = () => {
               setValue(event.target.value);
             }}
           >
-            {items.map((element, index) => {
+            {items.map((element) => {
               return (
                 <option key={element?.value} value={element?.value}>
                   {element.label}
