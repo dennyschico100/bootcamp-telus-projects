@@ -375,8 +375,8 @@ const EnglishApp = () => {
     secret: '',
   };
 
-  const jsQuestions = require('./jsquestions.json');
-  console.log(jsQuestions);
+  //const jsQuestions = require('./jsquestions.json');
+  //console.log(jsQuestions);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('words');
   const [wordInput, setWordInput] = useState('');
@@ -434,7 +434,7 @@ const EnglishApp = () => {
     }
   };
 
-  const saveData = async () => {
+  /*const saveData = async () => {
     if (phrasalSpanish.length === phrasals.length) {
       let arrObj = [];
       const iterations = jsQuestions.length;
@@ -471,7 +471,7 @@ const EnglishApp = () => {
         console.log(error);
       }
     }
-  };
+  };*/
   /*const saveData = async () => {
     setIsLoading(true);
     const finalObj = {
@@ -595,7 +595,7 @@ const EnglishApp = () => {
             color="#841584"
             className="btn mt-3 "
             disabled={spanishInput === '' || wordInput === ''}
-            onClick={saveData}
+            onClick={() => {}}
           >
             Sava Data
           </button>
