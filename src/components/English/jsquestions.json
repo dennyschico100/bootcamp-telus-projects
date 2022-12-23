@@ -1,0 +1,160 @@
+[
+ {
+  "id": 1,
+  "question": "get an element  ",
+  "answer": "document.getElementById(''),getElementByClassName('')[},querySelectorAll('.')"
+ },
+ {
+  "id": 2,
+  "question": "create event click",
+  "answer": "button.addEventListener('click',()=>{} )"
+ },
+ {
+  "id": 3,
+  "question": "write a nice if else block",
+  "answer": "if(true) addNumbers() else removeItem(item)"
+ },
+ {
+  "id": 4,
+  "question": "Object destructuring ",
+  "answer": "const {name, email, phone} = employee"
+ },
+ {
+  "id": 5,
+  "question": "nullish coalescing operator example",
+  "answer": "check if a value is neither undefined or null "
+ },
+ {
+  "id": 6,
+  "question": "if(path !== null && path !== undefined && path !== '') { imagePath = path",
+  "answer": "const imagePath = getImagePath() || 'default.jpg' "
+ },
+ {
+  "id": 7,
+  "question": "arrow function",
+  "answer": "const myOrder = order => console.log(`Customer need ${order}`); "
+ },
+ {
+  "id": 8,
+  "question": "if (x !== “” && x !== null && x !== undefined) { ... }  ",
+  "answer": "if ( !!x ) { ... }"
+ },
+ {
+  "id": 9,
+  "question": "component.jsx const error_message ='zzz' ",
+  "answer": "move constant to a sepereate file , upper snake cammel case"
+ },
+ {
+  "id": 10,
+  "question": "if(result > 30 ){ return 'pass' }else{ return 'fail'} ",
+  "answer": "let result = marks >= 30 ? 'Pass' : 'Fail';"
+ },
+ {
+  "id": 11,
+  "question": "Si es la funcion 1 es true entonces llamamos a la ota funcion",
+  "answer": "isLoggedin && goToHomepage()"
+ },
+ {
+  "id": 12,
+  "question": "Encontrar el numero maximo en un array ",
+  "answer": "Math.max(...arr)"
+ },
+ {
+  "id": 13,
+  "question": "react definir imagen con una fn ",
+  "answer": "src={product.image? urlImage(product.image, 400, 0): 'defualt.png'}'"
+ },
+ {
+  "id": 14,
+  "question": "advanced filter example",
+  "answer": "export const myFn = (arr, edad) => arr.filter((item) => item.edad >= edad) || [];const QUOTE_AGE = 225;const filteredSelectedPlansByAge = myFn(selectedPlans, QUOTE_AGE);"
+ },
+ {
+  "id": 15,
+  "question": "most common array methods",
+  "answer": "map, reduce, pop , shift , unshift, filter"
+ },
+ {
+  "id": 16,
+  "question": "localstorage",
+  "answer": "The data is not sent back to the server for every HTTP request – reducing the amount of traffic between client and server. It will stay until it is manually cleared through settings or program."
+ },
+ {
+  "id": 17,
+  "question": "What would be the result of 2+5+”3″?",
+  "answer": "73."
+ },
+ {
+  "id": 18,
+  "question": "empty an array",
+  "answer": "arr.length=0"
+ },
+ {
+  "id": 19,
+  "question": "How can you detect the client's browser name?",
+  "answer": "navigator.appName  "
+ },
+ {
+  "id": 20,
+  "question": "console.log(false == '0')",
+  "answer": "true"
+ },
+ {
+  "id": 21,
+  "question": "write a fn that compares a const agains the value of a prop in an object",
+  "answer": "const partialStringId = 'Picture_url';const containsImage = (equipment) => equipment.attachment?.find((attachment) => attachment.id.includes(partialStringId))?.content || '';"
+ },{
+  "id": 22,
+  "question": "refactor a if-else block",
+  "answer": "if(!condition) if(!conditio2) doSomething()"
+ },{
+  "id": 23,
+  "question": "concatenate string ,using tempalte literals ",
+  "answer": "const string = `${name}${age}`"
+ },{
+  "id": 24,
+  "question": "get unique values in array",
+  "answer": "const unique  = [...new Set(array_values)]"
+ },{
+  "id": 25,
+  "question": "refactor large switch statement",
+  "answer": "const getGramos=(fruta){const arr ={'fresa':'1g'}  return arr[fruta] || 'default g'}"
+ },{
+  "id": 26,
+  "question": "get max value in arr",
+  "answer": "const getMax=Math.max(...arr)"
+ },{
+  "id": 27,
+  "question": "get max value in arr",
+  "answer": "const getMax=Math.max(...arr)"
+ },{
+  "id": 28,
+  "question": "validate event target",
+  "answer": "function handleEvent(event) {if (!event || !event.target) {return;}"
+ },{
+  "id": 29,
+  "question": "array to obj",
+  "answer": " let arrObject = { ...arr };"
+ },{
+  "id": 30,
+  "question": "Default and Named Imports",
+  "answer": "export default ExampleComponent; export const capitalize = ()={}"
+ },{
+  "id": 31,
+  "question": "Render a list of books using react",
+  "answer": "<Book age={age}  />"
+ },{
+  "id": 32,
+  "question": "send props using spread opetator",
+  "answer": "const user = {name: 'Tommy'};  <User {...user} />"
+ },{
+  "id": 33,
+  "question": "Conditional rendering in react",
+  "answer": "showMenu ? (<></>) : (<></>)"
+ },{
+  "id": 34,
+  "question": "modify object state in react, minus 1 to .age",
+  "answer": "setPerson({ ...person, age: person.age - 1 })"
+ }
+
+]
