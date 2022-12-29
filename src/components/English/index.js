@@ -592,7 +592,10 @@ const EnglishApp = () => {
             color="#841584"
             className="btn mt-3 "
             disabled={spanishInput === '' || wordInput === ''}
-            onClick={saveData}
+            onClick={(e) => {
+              e.preventDefault();
+              saveData();
+            }}
           >
             Sava Data
           </button>
