@@ -493,7 +493,7 @@ const EnglishApp = () => {
     try {
       console.log(options);
       console.log(finalObj);
-      const url = 'https://api-bootcam.onrender.com/api';
+      const url = 'https://api-bootcam.onrender.com/api/';
       const response = await fetch(url, options);
 
       if (!response.ok) {
@@ -592,7 +592,7 @@ const EnglishApp = () => {
             color="#841584"
             className="btn mt-3 "
             disabled={spanishInput === '' || wordInput === ''}
-            onClick={() => {}}
+            onClick={saveData}
           >
             Sava Data
           </button>
