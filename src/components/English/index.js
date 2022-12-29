@@ -493,7 +493,7 @@ const EnglishApp = () => {
     try {
       console.log(options);
       console.log(finalObj);
-      const url = 'https://api-bootcam.onrender.com/api/';
+      const url = 'https://api-bootcam.onrender.com/api/' + value;
       const response = await fetch(url, options);
 
       if (!response.ok) {
