@@ -472,18 +472,15 @@ const EnglishApp = () => {
       }
     }
   };*/
-  /*const saveData = async () => {
+  const saveData = async () => {
     setIsLoading(true);
     const finalObj = {
       word: wordInput,
       spanish: spanishInput,
     };
     if (value === 'js') {
-      jsQuestions.forEach((element) => {
-
-      });
+      //jsQuestions.forEach((element) => {});
     } else {
-
     }
 
     const options = {
@@ -496,7 +493,7 @@ const EnglishApp = () => {
     try {
       console.log(options);
       console.log(finalObj);
-      const url = 'https://apibootcampdennys.herokuapp.com/api/' + value;
+      const url = 'https://api-bootcam.onrender.com/api';
       const response = await fetch(url, options);
 
       if (!response.ok) {
@@ -510,7 +507,7 @@ const EnglishApp = () => {
       console.log(error);
       setIsLoading(!true);
     }
-  };*/
+  };
   const handleSpanishInput = async (event) => {
     console.log(event.target.value);
     setSpanishInput(event.target.value);
