@@ -411,7 +411,7 @@ const EnglishApp = () => {
       };
       console.log(options);
       console.log({ value });
-      const url = 'http://localhost:3001/api/' + value;
+      const url = 'https://api-bootcam.onrender.com/api/' + value;
       const response = await fetch(url, options);
       if (value === 'js') {
       }
@@ -502,7 +502,7 @@ const EnglishApp = () => {
       console.log(options);
       console.log(finalObj);
       console.log({ value });
-      const url = 'http://localhost:3001/api/' + value;
+      const url = 'https://api-bootcam.onrender.com/api/' + value;
       console.log({ url });
       const response = await fetch(url, options);
 
