@@ -386,6 +386,7 @@ const EnglishApp = () => {
   const [items, setItems] = useState([
     { label: 'WORDS', value: 'words' },
     { label: 'PHRASAL VERBS', value: 'phrasal' },
+    { label: 'work  and useful', value: 'useful' },
     { label: 'PERSONALITY', value: 'personality' },
     { label: 'DESCRIBE  PEOPLE', value: 'people' },
     { label: 'javascript', value: 'js' },
@@ -572,6 +573,7 @@ const EnglishApp = () => {
           <div className="form-group">
             <input
               className="mb-3 mt-3 "
+              style={{ padding: '0.5rem' }}
               type="text"
               value={wordInput || ''}
               onChange={(event) => {
@@ -579,14 +581,17 @@ const EnglishApp = () => {
               }}
               placeholder="English word/phrasal-verb"
             />
-            <input
-              value={spanishInput}
-              className="mb-3"
-              onChange={(event) => {
-                handleSpanishInput(event);
-              }}
-              placeholder="Spanish meaning"
-            />
+            <div>
+              <input
+                style={{ padding: '0.5rem' }}
+                value={spanishInput}
+                className="mb-3"
+                onChange={(event) => {
+                  handleSpanishInput(event);
+                }}
+                placeholder="Spanish meaning"
+              />
+            </div>
           </div>
           <button
             color="#841584"
