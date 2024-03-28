@@ -392,8 +392,10 @@ const EnglishApp = () => {
     { label: 'javascript', value: 'js' },
   ]);
 
-  function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max) + 1;
+  function generateRandomInteger(limite) {
+    let numeroAleatorio = Math.random();
+    let numero = Math.floor(numeroAleatorio * limite) + 1;
+    return numero;
   }
 
   const getData = async () => {
@@ -408,8 +410,8 @@ const EnglishApp = () => {
         },
       };
       console.log(options);
-
-      const url = 'https://api-bootcam.onrender.com/api/' + value;
+      console.log({ value });
+      const url = 'http://localhost:3001/api/' + value;
       const response = await fetch(url, options);
       if (value === 'js') {
       }
@@ -418,16 +420,21 @@ const EnglishApp = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+      console.log({ data });
 
       let results = [];
 
+      /*while (results.length <= 5) {
+        
+      }*/
       for (let index = 0; index < 5; index++) {
-        let generatedNumber = generateRandomInteger(data.length);
-        console.error(data[generatedNumber]);
+        let generatedNumber = generateRandomInteger(data.length - 1);
+        console.log(generatedNumber);
         results.push(data[generatedNumber]);
+        //console.error(data[generatedNumber]);
       }
       console.log('FINAL RESULT TO SHOW');
+      console.log({ results });
       setState({ data: results });
       setIsLoading(false);
     } catch (error) {
@@ -494,12 +501,15 @@ const EnglishApp = () => {
     try {
       console.log(options);
       console.log(finalObj);
-      const url = 'https://api-bootcam.onrender.com/api/' + value;
+      console.log({ value });
+      const url = 'http://localhost:3001/api/' + value;
+      console.log({ url });
       const response = await fetch(url, options);
 
-      if (!response.ok) {
+      /*if (!response.ok) {
+        console.log(response);
         throw new Error(`Error! status: ${response.status}`);
-      }
+      }*/
       console.log(response);
       const data = await response.json();
       console.log(data);
