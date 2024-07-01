@@ -36,8 +36,13 @@ const Pomodoro = () => {
   const [percentage, setPercentage] = useState(0);
   const audioRef = useRef(null);
   const divSettings = useRef(null);
+  const [isVisible, setIsVisibe] = useState(false);
+
   //const percentageIncrement = (1 * 60) / 100;
 
+  //yarn eslint:fix
+  //yarn prettier:fix
+  //git commit -S -m "feat: new dsfadfasdfaf"
   const [cycleFinished, setCycleFinished] = useState(false);
   let [interval, setinterval] = useState(() => {});
 
@@ -45,6 +50,15 @@ const Pomodoro = () => {
     clearInterval(interval);
     setPercentage(0);
   };
+
+  useEffect(() => {});
+  //en el primer render
+  useEffect(async () => {
+    console.log('se cambio el tiempo');
+  }, [seconds]);
+  //cada vez que esta variable se modifique
+  useEffect(() => {}, []);
+
   useEffect(() => {
     console.log('useEffect run first render');
     window.localStorage.setItem('totalSeconds', minutes * 60);
@@ -58,6 +72,7 @@ const Pomodoro = () => {
 
     document.body.style.background = '#003049';
   }, []);
+
   useEffect(() => {
     if (start) {
       interval = setInterval(() => {

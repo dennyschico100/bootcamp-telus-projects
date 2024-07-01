@@ -1,17 +1,17 @@
 [
  {
   "id": 1,
-  "question": "get an element  ",
+  "question": "How to get an element  in js?",
   "answer": "document.getElementById(''),getElementByClassName('')[},querySelectorAll('.')"
  },
  {
   "id": 2,
-  "question": "create event click",
+  "question": "How would you reate event click?",
   "answer": "button.addEventListener('click',()=>{} )"
  },
  {
   "id": 3,
-  "question": "write a nice if else block",
+  "question": "Write a nice if else block",
   "answer": "if(true) addNumbers() else removeItem(item)"
  },
  {
@@ -21,23 +21,25 @@
  },
  {
   "id": 5,
-  "question": "nullish coalescing operator example",
-  "answer": "check if a value is neither undefined or null "
+  "question": "What is the nullish coalescing operator ?",
+  "answer": "check if a value is neither undefined or null"
  },
  {
   "id": 6,
-  "question": "if(path !== null && path !== undefined && path !== '') { imagePath = path",
+  "question": "Refactor this code",
+  "questionImage":"q-6.png",
   "answer": "const imagePath = getImagePath() || 'default.jpg' "
  },
  {
   "id": 7,
-  "question": "arrow function",
+  "question": "Write an arrow function",
   "answer": "const myOrder = order => console.log(`Customer need ${order}`); "
  },
  {
   "id": 8,
-  "question": "if (x !== “” && x !== null && x !== undefined) { ... }  ",
-  "answer": "if ( !!x ) { ... }"
+  "question": "Refactor this code",
+  "questionImage":"q-6.png", 
+  "answer": "if ( x ) { doSomethig() }"
  },
  {
   "id": 9,
@@ -46,22 +48,23 @@
  },
  {
   "id": 10,
-  "question": "if(result > 30 ){ return 'pass' }else{ return 'fail'} ",
-  "answer": "let result = marks >= 30 ? 'Pass' : 'Fail';"
+  "question": "Refactor this code",
+  "questionImage":"q-10.png", 
+  "answer": "cosnt result = marks >= 30 ? 'Pass' : 'Fail';"
  },
  {
   "id": 11,
-  "question": "Si es la funcion 1 es true entonces llamamos a la ota funcion",
-  "answer": "isLoggedin && goToHomepage()"
+  "question": "",
+  "answer": ""
  },
  {
   "id": 12,
-  "question": "Encontrar el numero maximo en un array ",
+  "question": "How to get the maximun value in an array",
   "answer": "Math.max(...arr)"
  },
  {
   "id": 13,
-  "question": "react definir imagen con una fn ",
+  "question": "React js definf a image using a function",
   "answer": "src={product.image? urlImage(product.image, 400, 0): 'defualt.png'}'"
  },
  {
@@ -71,22 +74,22 @@
  },
  {
   "id": 15,
-  "question": "most common array methods",
+  "question": "What are the most common array methods",
   "answer": "map, reduce, pop , shift , unshift, filter"
  },
  {
   "id": 16,
-  "question": "localstorage",
+  "question": "What is localstorage",
   "answer": "The data is not sent back to the server for every HTTP request – reducing the amount of traffic between client and server. It will stay until it is manually cleared through settings or program."
  },
  {
   "id": 17,
   "question": "What would be the result of 2+5+”3″?",
-  "answer": "73."
+  "answer": "73"
  },
  {
   "id": 18,
-  "question": "empty an array",
+  "question": "How to empty an array?",
   "answer": "arr.length=0"
  },
  {
@@ -96,12 +99,12 @@
  },
  {
   "id": 20,
-  "question": "console.log(false == '0')",
+  "question": "What does this code print console.log(false == '0') ?",
   "answer": "true"
  },
  {
   "id": 21,
-  "question": "write a fn that compares a const agains the value of a prop in an object",
+  "question": "Write a function that compares a const agains the value of a prop in an object",
   "answer": "const partialStringId = 'Picture_url';const containsImage = (equipment) => equipment.attachment?.find((attachment) => attachment.id.includes(partialStringId))?.content || '';"
  },{
   "id": 22,
@@ -129,7 +132,7 @@
   "answer": "const getMax=Math.max(...arr)"
  },{
   "id": 28,
-  "question": "validate event target",
+  "question": "Validate event target",
   "answer": "function handleEvent(event) {if (!event || !event.target) {return;}"
  },{
   "id": 29,
@@ -141,20 +144,56 @@
   "answer": "export default ExampleComponent; export const capitalize = ()={}"
  },{
   "id": 31,
-  "question": "Render a list of books using react",
+  "question": "Write a program in react js thatRender a list of books",
   "answer": "<Book age={age}  />"
  },{
   "id": 32,
-  "question": "send props using spread opetator",
+  "question": "How would  you send props using spread opetator in react js",
   "answer": "const user = {name: 'Tommy'};  <User {...user} />"
  },{
   "id": 33,
-  "question": "Conditional rendering in react",
+  "question": "Write an example of conditional rendering in react js",
   "answer": "showMenu ? (<></>) : (<></>)"
  },{
   "id": 34,
-  "question": "modify object state in react, minus 1 to .age",
+  "question": "How would you modify an object state in react, minus 1 to .age",
   "answer": "setPerson({ ...person, age: person.age - 1 })"
+ },{
+  "id": 35,
+  "question": "Mdify object state in react, substract 1 to  a number property in an object",
+  "answer": "setPerson({ ...person, age: person.age - 1 })"
+ },{
+  "id": 36,
+  "question": "Explain Hoisting in javascript",
+  "answer": "Default behaviour of javascript where all the variable and function declarations are moved on top"
+ },{
+  "id": 37,
+  "question": "setTimeOut, setInterval and stop and interval",
+  "answer": "clearInterval(countDown);"
+ },{
+  "id": 38,
+  "question": "Write an example of Object.key and Object.values",
+  "answer": "write an example"
+ },{
+  "id": 39,
+  "question": "What will this code output log var a = ['dog', 'cat', 'hen']; a[100] = 'fox';)console.log(a.length);",
+  "answer": "101"
+ },{
+  "id": 40,
+  "question": "Which statement sets the Person constructor as the parent of the Student constructor in the prototype chain?",
+  "answer": "Student.prototype = new Person();"
+ },{
+  "id": 40,
+  "question": "spreading arguments in a funcion and concatenate two arrays",
+  "answer": "arr1 = [...arr1, ...arr2];"
+ },{
+  "id": 41,
+  "question": "I log the loop counter inside setTimeout, what will be logged?",
+  "answer": "The above will not output the numbers 0 through 9, but will simply print the number 10 ten times."
+ },{
+  "id": 42,
+  "question": "JavaScript Event Handlers",
+  "answer": "onfocus,onmous­edown, onmouseout, onmous­eover,onresize,onblur,onkeydown,onkeypress,onkeyup,onload"
  }
-
 ]
+

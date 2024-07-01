@@ -1,5 +1,5 @@
 import React from 'react';
-import CardSlider from './CardSlider';
+import { CardSlider } from './CardSlider';
 import './estilos.css';
 const dataCardRender = [
   {
@@ -39,7 +39,6 @@ const dataCardRender = [
     src: '',
   },
 ];
-
 function HomeMenu() {
   return (
     <div className="gallery" style={{ padding: '5%' }}>
@@ -52,6 +51,7 @@ function HomeMenu() {
             color={color}
             key={i}
           />
+          <pre>{''}</pre>
         </div>
       ))}
     </div>

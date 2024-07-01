@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CardSlider({ className, title, src, jumpTo, color }) {
+export const CardSlider = ({ className, title, src, jumpTo, color }) => {
   // console.log("colors--", color)
   return (
     <div
@@ -33,6 +33,4 @@ function CardSlider({ className, title, src, jumpTo, color }) {
       */}
     </div>
   );
-}
-
-export default CardSlider;
+};
