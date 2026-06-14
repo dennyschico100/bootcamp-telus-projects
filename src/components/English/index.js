@@ -1,395 +1,397 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 const EnglishApp = () => {
   const words = [
-    'research',
-    'realize',
-    'counter',
-    'concern',
-    'despite',
-    'certainly',
-    'hopeful',
-    'involved',
-    'guarantee',
-    'meantime',
-    'assuming',
-    'tabs',
-    'deal',
-    'acknowledged',
-    'issue',
-    'surprise',
-    'stark',
-    'campaign',
-    'delinquent',
-    'summoning',
-    'appearance',
-    'murder',
-    'bottomless',
-    'perseverance',
-    'tilting',
-    'worthless',
-    'mess',
-    'beyond',
-    'nevertheless',
-    'foremost',
-    'witnessing',
-    'slightly',
-    'unpredictable',
-    'loops',
-    'maneuver',
-    'plot',
-    'flawed',
-    'proof',
-    'rebirth',
-    'brief',
-    'briefly',
-    'argument',
-    'defund',
-    'notwithstanding',
-    'afford',
-    'obviously',
-    'delayed',
-    'announcement',
-    'wannabe',
-    'newfound',
-    'anger',
-    'spiteful',
-    'groundwork',
-    'grudge',
-    'prideful',
-    'mayhem',
-    'prior',
-    'scattered',
-    'seldom',
-    'perpetrate',
-    'emphasis',
-    'cautiously',
-    'unguessable',
-    'provide',
-    'entirely',
-    'fiance',
-    'evidence',
-    'dubious',
-    'harmless',
-    'inconclusive',
-    'refuse',
-    'mercy',
-    'glimpses',
-    'harmful',
-    'salty',
-    'guilty',
-    'illness',
-    'selfish',
-    'courage',
-    'wisdom',
-    'zestful',
-    'shelf',
-    'drug',
-    'wases',
-    'envelope',
-    'crowded',
-    'signature',
-    'fan',
-    'consequence',
-    'scholarship',
-    'fund',
-    'defendant',
-    'juror',
-    'testify',
-    'trial',
-    'lawsuit',
-    'prosecutor',
-    'alibi',
-    'excuse',
-    'brave',
-    'insist',
-    'weakness',
-    'bitter',
-    'sensible',
-    'coworker',
-    'managment',
-    'bridesmaid',
-    'ancestor',
-    'supplies',
-    'prosperous',
-    'constanly',
-    'greatly',
-    'discuss',
-    'features',
-    'invest',
-    'donate',
-    'footstep',
-    'pretend',
-    'wine',
-    'fence',
-    'stage',
-    'presence',
-    'deliberately',
-    'anxiety',
-    'ironically',
-    'arrests',
-    'wee',
-    'assassinated',
-    'controversy',
-    'survey',
-    'unlikely',
-    'withstand',
-    'dozens',
-    'hill',
-    'insurance',
-    'slumps',
-    'exchange',
-    'downturns',
-    'previously',
-    'unforeseen',
-    'likely',
-    'spectacularly',
-    'catastrophe',
-    'failure',
-    'adequate',
-    'struggling',
-    'proclamation',
-    'approve',
-    'elect',
-    'participate',
-    'rivalry',
-    'intense',
-    'achieve',
-    'lucrative',
-    'proper',
-    'sums',
-    'luxurious',
-    'highlighted',
-    'grave',
-    'consider',
-    'server',
-    'sponsor',
-    'suspect',
-    'craft',
-    'sleepily',
-    'breathing',
-    'cheer',
-    'approached',
-    'beaming',
-    'humorously',
-    'childish',
-    'breath',
+    "research",
+    "realize",
+    "counter",
+    "concern",
+    "despite",
+    "certainly",
+    "hopeful",
+    "involved",
+    "guarantee",
+    "meantime",
+    "assuming",
+    "tabs",
+    "deal",
+    "acknowledged",
+    "issue",
+    "surprise",
+    "stark",
+    "campaign",
+    "delinquent",
+    "summoning",
+    "appearance",
+    "murder",
+    "bottomless",
+    "perseverance",
+    "tilting",
+    "worthless",
+    "mess",
+    "beyond",
+    "nevertheless",
+    "foremost",
+    "witnessing",
+    "slightly",
+    "unpredictable",
+    "loops",
+    "maneuver",
+    "plot",
+    "flawed",
+    "proof",
+    "rebirth",
+    "brief",
+    "briefly",
+    "argument",
+    "defund",
+    "notwithstanding",
+    "afford",
+    "obviously",
+    "delayed",
+    "announcement",
+    "wannabe",
+    "newfound",
+    "anger",
+    "spiteful",
+    "groundwork",
+    "grudge",
+    "prideful",
+    "mayhem",
+    "prior",
+    "scattered",
+    "seldom",
+    "perpetrate",
+    "emphasis",
+    "cautiously",
+    "unguessable",
+    "provide",
+    "entirely",
+    "fiance",
+    "evidence",
+    "dubious",
+    "harmless",
+    "inconclusive",
+    "refuse",
+    "mercy",
+    "glimpses",
+    "harmful",
+    "salty",
+    "guilty",
+    "illness",
+    "selfish",
+    "courage",
+    "wisdom",
+    "zestful",
+    "shelf",
+    "drug",
+    "wases",
+    "envelope",
+    "crowded",
+    "signature",
+    "fan",
+    "consequence",
+    "scholarship",
+    "fund",
+    "defendant",
+    "juror",
+    "testify",
+    "trial",
+    "lawsuit",
+    "prosecutor",
+    "alibi",
+    "excuse",
+    "brave",
+    "insist",
+    "weakness",
+    "bitter",
+    "sensible",
+    "coworker",
+    "managment",
+    "bridesmaid",
+    "ancestor",
+    "supplies",
+    "prosperous",
+    "constanly",
+    "greatly",
+    "discuss",
+    "features",
+    "invest",
+    "donate",
+    "footstep",
+    "pretend",
+    "wine",
+    "fence",
+    "stage",
+    "presence",
+    "deliberately",
+    "anxiety",
+    "ironically",
+    "arrests",
+    "wee",
+    "assassinated",
+    "controversy",
+    "survey",
+    "unlikely",
+    "withstand",
+    "dozens",
+    "hill",
+    "insurance",
+    "slumps",
+    "exchange",
+    "downturns",
+    "previously",
+    "unforeseen",
+    "likely",
+    "spectacularly",
+    "catastrophe",
+    "failure",
+    "adequate",
+    "struggling",
+    "proclamation",
+    "approve",
+    "elect",
+    "participate",
+    "rivalry",
+    "intense",
+    "achieve",
+    "lucrative",
+    "proper",
+    "sums",
+    "luxurious",
+    "highlighted",
+    "grave",
+    "consider",
+    "server",
+    "sponsor",
+    "suspect",
+    "craft",
+    "sleepily",
+    "breathing",
+    "cheer",
+    "approached",
+    "beaming",
+    "humorously",
+    "childish",
+    "breath",
   ];
   const spanish = [
-    'investigacion',
-    'darse cuenta ',
-    'contrarestar',
-    'animar',
-    'a pesar de ',
-    'ciertamente',
-    'esperanzado',
-    'envuelto',
-    'garantia(verb)',
-    'mientras tanto',
-    'asumiendo',
-    'pestaña',
-    'trato',
-    'admitido',
-    'asunto',
-    'sorpresa',
-    'rigido',
-    'campaña',
-    'delincuente',
-    'invocando',
-    'apariencia',
+    "investigacion",
+    "darse cuenta ",
+    "contrarestar",
+    "animar",
+    "a pesar de ",
+    "ciertamente",
+    "esperanzado",
+    "envuelto",
+    "garantia(verb)",
+    "mientras tanto",
+    "asumiendo",
+    "pestaña",
+    "trato",
+    "admitido",
+    "asunto",
+    "sorpresa",
+    "rigido",
+    "campaña",
+    "delincuente",
+    "invocando",
+    "apariencia",
 
-    'asesinato',
-    'sin fondo',
-    'peseverancia',
-    'inclinando',
-    'sin valor',
-    'lio',
-    'mas alla ',
-    'sin embargo',
-    'principal primero',
-    'testificar-testigo',
-    'ligeramente',
-    'impredecible',
-    'bucles',
-    'maiobra',
-    'trama-argumento',
-    'defectuoso',
-    'prueba-demostracion',
-    'renacer',
-    'breve',
-    'brevemente',
-    'argumento',
-    'desvanecer',
-    'sin embargo',
-    'pagar ',
-    'obviamente',
-    'retrasado',
-    'anuncio-anunciamiento',
-    'aspirante',
-    'recien descubieto',
-    'enojo-colera',
+    "asesinato",
+    "sin fondo",
+    "peseverancia",
+    "inclinando",
+    "sin valor",
+    "lio",
+    "mas alla ",
+    "sin embargo",
+    "principal primero",
+    "testificar-testigo",
+    "ligeramente",
+    "impredecible",
+    "bucles",
+    "maiobra",
+    "trama-argumento",
+    "defectuoso",
+    "prueba-demostracion",
+    "renacer",
+    "breve",
+    "brevemente",
+    "argumento",
+    "desvanecer",
+    "sin embargo",
+    "pagar ",
+    "obviamente",
+    "retrasado",
+    "anuncio-anunciamiento",
+    "aspirante",
+    "recien descubieto",
+    "enojo-colera",
 
-    'malevolo',
-    'trabajo preparatorio ',
-    'resentimiento',
-    'orgulloso',
-    'violencia',
-    'anterior',
-    'disperso',
-    'raramente',
-    'perpetrar',
-    'enfasis',
-    'cautelosamente',
-    'indescriptible',
-    'proporcionar',
-    'en su totalidad',
-    'prometido',
-    'evidencia',
-    'dudoso',
-    'inofensivo',
-    'inconcluso',
-    'desperdicio,basura-desechos',
-    'misericordia',
-    'destellos',
-    'dañino',
-    'salado',
-    'culpable',
-    'emfermedad',
-    'tacaño',
-    'corage',
-    'sabiduria',
-    'entusiasta',
-    'estante',
-    'droga',
-    'desperdicios',
-    'sobre',
-    'lleno de gente',
-    'firma',
-    'ventilador',
-    'consecuencia',
-    'beca',
-    'fondo-base,-costear-financiar',
-    'acusado',
-    'jurado',
-    'testificar',
-    'juicio-audiencia',
-    'demanda',
-    'fiscal',
-    'alegar-coartada',
-    'excusa',
-    'valiente',
-    'insistir',
-    'debilidad',
-    'amargo',
-    'sensible',
-    'compañero de trabajo',
-    'gestion',
-    'dama de honor',
-    'ancestro',
-    'suministros',
-    'prospero',
-    'constantemente',
-    'muy-extremadamente',
-    'discutir',
-    'caracteristicas',
-    'invertir',
-    'donar',
-    'pisada',
-    'pretender',
-    'vino',
-    'cerca-valla',
-    'fase',
-    'presencia',
-    'deliveradamente',
-    'ansiedad',
-    'ironicamente',
-    'arrestos',
-    'pequeñito',
-    'asesinado',
-    'controversial',
-    'encuesta',
-    'improbable',
-    'resistir a',
-    'docenas',
-    'colina',
-    'seguro',
-    'desplomes',
-    'intercambiar',
-    'recesion',
-    'previamente',
-    'imprevisto',
-    'probable',
-    'espectacularmente',
-    'catastrofe',
-    'fallar-fracaso',
-    'adecuar',
-    'luchando',
-    'proclamacion',
-    'aprobar',
-    'electo',
-    'participar',
-    'rivalidad',
-    'intenso',
-    'logra-conseguir',
-    'lucartivo',
-    'apropiado',
-    'sumas',
-    'lujoso',
-    'resaltado',
-    'tumba',
-    'considerar',
-    'servir',
-    'patrocinador',
-    'sospechar',
-    'arte',
-    'soñolientamente',
-    'respiracion',
-    'animar',
-    'acercado ',
-    'radiante',
-    'humoristicamente',
-    'infantil',
-    'respiro',
+    "malevolo",
+    "trabajo preparatorio ",
+    "resentimiento",
+    "orgulloso",
+    "violencia",
+    "anterior",
+    "disperso",
+    "raramente",
+    "perpetrar",
+    "enfasis",
+    "cautelosamente",
+    "indescriptible",
+    "proporcionar",
+    "en su totalidad",
+    "prometido",
+    "evidencia",
+    "dudoso",
+    "inofensivo",
+    "inconcluso",
+    "desperdicio,basura-desechos",
+    "misericordia",
+    "destellos",
+    "dañino",
+    "salado",
+    "culpable",
+    "emfermedad",
+    "tacaño",
+    "corage",
+    "sabiduria",
+    "entusiasta",
+    "estante",
+    "droga",
+    "desperdicios",
+    "sobre",
+    "lleno de gente",
+    "firma",
+    "ventilador",
+    "consecuencia",
+    "beca",
+    "fondo-base,-costear-financiar",
+    "acusado",
+    "jurado",
+    "testificar",
+    "juicio-audiencia",
+    "demanda",
+    "fiscal",
+    "alegar-coartada",
+    "excusa",
+    "valiente",
+    "insistir",
+    "debilidad",
+    "amargo",
+    "sensible",
+    "compañero de trabajo",
+    "gestion",
+    "dama de honor",
+    "ancestro",
+    "suministros",
+    "prospero",
+    "constantemente",
+    "muy-extremadamente",
+    "discutir",
+    "caracteristicas",
+    "invertir",
+    "donar",
+    "pisada",
+    "pretender",
+    "vino",
+    "cerca-valla",
+    "fase",
+    "presencia",
+    "deliveradamente",
+    "ansiedad",
+    "ironicamente",
+    "arrestos",
+    "pequeñito",
+    "asesinado",
+    "controversial",
+    "encuesta",
+    "improbable",
+    "resistir a",
+    "docenas",
+    "colina",
+    "seguro",
+    "desplomes",
+    "intercambiar",
+    "recesion",
+    "previamente",
+    "imprevisto",
+    "probable",
+    "espectacularmente",
+    "catastrofe",
+    "fallar-fracaso",
+    "adecuar",
+    "luchando",
+    "proclamacion",
+    "aprobar",
+    "electo",
+    "participar",
+    "rivalidad",
+    "intenso",
+    "logra-conseguir",
+    "lucartivo",
+    "apropiado",
+    "sumas",
+    "lujoso",
+    "resaltado",
+    "tumba",
+    "considerar",
+    "servir",
+    "patrocinador",
+    "sospechar",
+    "arte",
+    "soñolientamente",
+    "respiracion",
+    "animar",
+    "acercado ",
+    "radiante",
+    "humoristicamente",
+    "infantil",
+    "respiro",
   ];
 
   const phrasals = [
-    'set out ',
-    'drop off ',
-    'find out',
-    'came up with',
-    'catch up with',
-    'take off',
-    'put on',
+    "set out ",
+    "drop off ",
+    "find out",
+    "came up with",
+    "catch up with",
+    "take off",
+    "put on",
   ];
 
   const phrasalSpanish = [
-    'partir',
-    'dejar',
-    'descubrir',
-    'proponer',
-    'ponerse al dia',
-    'despegar',
-    'poner',
+    "partir",
+    "dejar",
+    "descubrir",
+    "proponer",
+    "ponerse al dia",
+    "despegar",
+    "poner",
   ];
   const obj = {
-    secret: '',
+    secret: "",
   };
 
   //const jsQuestions = require('./jsquestions.json');
   //console.log(jsQuestions);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('words');
-  const [wordInput, setWordInput] = useState('');
-  const [spanishInput, setSpanishInput] = useState('');
+  const [selectValue, setValue] = useState("words");
+  const [wordInput, setWordInput] = useState("");
+  const [spanishInput, setSpanishInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState({ data: [] });
+  const [showSpanish, setShowPansish] = useState(false);
   const [items, setItems] = useState([
-    { label: 'WORDS', value: 'words' },
-    { label: 'PHRASAL VERBS', value: 'phrasal' },
-    { label: 'work  and useful', value: 'useful' },
-    { label: 'PERSONALITY', value: 'personality' },
-    { label: 'DESCRIBE  PEOPLE', value: 'people' },
-    { label: 'javascript', value: 'js' },
+    { label: "WORDS", value: "words" },
+    { label: "PHRASAL VERBS", value: "phrasal" },
+    { label: "work  and useful", value: "useful" },
+    { label: "PERSONALITY", value: "personality" },
+    { label: "DESCRIBE  PEOPLE", value: "people" },
+    { label: "javascript", value: "js" },
   ]);
 
   function generateRandomInteger(limite) {
@@ -398,28 +400,30 @@ const EnglishApp = () => {
     return numero;
   }
 
-  const getData = async () => {
+  const getData = async ({spanish}) => {
     try {
+      console.log({spanish})
       setState({ data: [] });
       setIsLoading(true);
 
       const options = {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       };
       console.log(options);
-      console.log({ value });
-      const url = 'https://api-bootcam.onrender.com/api/' + value;
+      console.log({ selectValue });
+      const url = "https://api-bootcam.onrender.com/api/" + selectValue;
       const response = await fetch(url, options);
-      if (value === 'js') {
+      if (selectValue === "js") {
       }
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       }
 
       const data = await response.json();
+      
       console.log({ data });
 
       let results = [];
@@ -433,8 +437,9 @@ const EnglishApp = () => {
         results.push(data[generatedNumber]);
         //console.error(data[generatedNumber]);
       }
-      console.log('FINAL RESULT TO SHOW');
+      console.log("FINAL RESULT TO SHOW");
       console.log({ results });
+      setShowPansish(spanish)
       setState({ data: results });
       setIsLoading(false);
     } catch (error) {
@@ -442,6 +447,9 @@ const EnglishApp = () => {
     }
   };
 
+  useEffect(()=>{
+    console.log(`updated ${showSpanish}`)
+  },[getData])
   /*const saveData = async () => {
     if (phrasalSpanish.length === phrasals.length) {
       let arrObj = [];
@@ -486,24 +494,21 @@ const EnglishApp = () => {
       word: wordInput,
       spanish: spanishInput,
     };
-    if (value === 'js') {
+    if (selectValue === "js") {
       //jsQuestions.forEach((element) => {});
     } else {
     }
 
     const options = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(finalObj),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     try {
-      console.log(options);
-      console.log(finalObj);
-      console.log({ value });
-      const url = 'https://api-bootcam.onrender.com/api/' + value;
-      console.log({ url });
+ 
+      const url = "https://api-bootcam.onrender.com/api/" + selectValue;
       const response = await fetch(url, options);
 
       /*if (!response.ok) {
@@ -528,17 +533,27 @@ const EnglishApp = () => {
     setWordInput(event.target.value);
   };
   useEffect(() => {
-    console.log('updated ' + value);
-  }, [value]);
-
+    console.log("updated " + selectValue);
+  }, [selectValue]);
+  if (isLoading) {
+    return (
+      <div className="container">
+        {" "}
+        <div className="row mt-5">
+          <div class="d-flex justify-content-center align-items-center mt-5">{isLoading && <ActivityIndicator />}</div>{" "}
+        </div>{" "}
+      </div>
+    );
+  }
   return (
     <div className="container">
       <div className="row mt-1">
         <div
           className="col-md-6 d-flex flex-wrap justify-content-between col-12 offset-md-3"
-          style={{ border: 'px solid red' }}
+          style={{ border: "px solid red" }}
         >
           <select
+            value={selectValue}
             onChange={(event) => {
               setValue(event.target.value);
             }}
@@ -551,26 +566,33 @@ const EnglishApp = () => {
               );
             })}
           </select>
-          <button onClick={getData} className="btn" color="#841584">
+          <button onClick={()=>{
+            getData({showSpanish:false})
+          } } className="btn" color="#841584">
             Generate data
+          </button>
+          <button onClick={()=>{
+            getData({spanish:true})
+          } } className="btn" color="#841584">
+            Generate Spanish
           </button>
         </div>
       </div>
 
       <div className="row">
         <div className=" d-flex flex-wrap justify-content-between col-12 ">
-          <div className="mt-1" style={{ border: 'px solid red' }}>
+          <div className="mt-1" style={{ border: "px solid red" }}>
             {state?.data.map((element) => {
               return (
                 <li
                   style={{
-                    listStyle: 'none',
-                    borderBottom: '1px solid #037e8c',
+                    listStyle: "none",
+                    borderBottom: "1px solid #037e8c",
                   }}
                   className=""
                   key={element?._id}
                 >
-                  {element.word}
+                  {showSpanish ? element.spanish : element.word}
                 </li>
               );
             })}
@@ -583,9 +605,9 @@ const EnglishApp = () => {
           <div className="form-group">
             <input
               className="mb-3 mt-3 "
-              style={{ padding: '0.5rem' }}
+              style={{ padding: "0.5rem" }}
               type="text"
-              value={wordInput || ''}
+              value={wordInput || ""}
               onChange={(event) => {
                 handleWordInput(event);
               }}
@@ -593,7 +615,7 @@ const EnglishApp = () => {
             />
             <div>
               <input
-                style={{ padding: '0.5rem' }}
+                style={{ padding: "0.5rem" }}
                 value={spanishInput}
                 className="mb-3"
                 onChange={(event) => {
@@ -606,7 +628,7 @@ const EnglishApp = () => {
           <button
             color="#841584"
             className="btn mt-3 "
-            disabled={spanishInput === '' || wordInput === ''}
+            disabled={spanishInput === "" || wordInput === ""}
             onClick={(e) => {
               e.preventDefault();
               saveData();
@@ -616,7 +638,6 @@ const EnglishApp = () => {
           </button>
         </div>
       </div>
-      <div>{isLoading && <ActivityIndicator />}</div>
     </div>
   );
 };
